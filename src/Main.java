@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 public class Main {
 
@@ -22,12 +23,14 @@ public class Main {
     }
 
     public static void menuOpciopnes(int selected) {
+        double matriz[][] = ingresoDatos();
+
             switch(selected) {
                 case 1:
-                    ingresoDatos();
+                    matriz=ingresoDatos();
                     break;
                 case 2:
-                    sismoMayorMagnitud();
+                    Double maximo = sismoMayorMagnitud(matriz);
                     break;
                 case 3:
                     sismoMayo5();
@@ -43,11 +46,35 @@ public class Main {
 
             }
     }
-    public static void ingresoDatos(){
-        
+    public static double[][]  ingresoDatos(){
+        DecimalFormat  formato = new DecimalFormat("#.0");
+        double matriz[][] = new double[7][24];
+        for (int x=0; x < matriz.length; x++) {
+            for (int y=0; y < matriz[x].length; y++) {
+                matriz[x][y] = (Double) (Math.random()*9.9);
+            }
+        }
+        for (int x = 0; x < matriz.length; x++) {
+            System.out.println();
+            for (int y = 0; y < matriz[x].length; y++) {
+                System.out.print("["+matriz[x][y]+"]");
+            }
+        }
+    return matriz;
     }
-    public static void sismoMayorMagnitud(){
-
+    public static Double sismoMayorMagnitud(double matriz[][]){
+        Double mayor = 0.0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                boolean b = matriz[i][j] > mayor;
+                if matriz[i][j] > mayor {
+                    mayor = matriz[i][j];
+                }
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    return mayor;
     }
     public static void sismoMayo5(){
 
