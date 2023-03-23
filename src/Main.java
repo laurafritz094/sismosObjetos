@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;
+
+import static java.lang.System.exit;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -28,21 +31,20 @@ public class Main {
             switch(selected) {
                 case 1:
                     matriz=ingresoDatos();
-                    break;
+                    menu();
                 case 2:
                     Double maximo = sismoMayorMagnitud(matriz);
                     System.out.println("sismo de mayor magnitud "+ maximo);
-                    break;
+                    menu();
                 case 3:
-                    int mayores5 = sismoMayo5(matriz);
+                    int mayores5 = sismoMayor5(matriz);
                     System.out.println("cantidad de sismos mayores a 5.0: "+ mayores5);
-                    break;
+                    menu();
                 case 4:
-                    enviarSMS();
-                    break;
+                    enviarSMS(matriz);
+                    menu();
                 case 5:
                     salir();
-                    break;
                 default:
                     System.out.println("elija una opcion valida");
 
@@ -77,7 +79,7 @@ public class Main {
         }
     return mayor;
     }
-    public static int sismoMayo5(double matriz[][]){
+    public static int sismoMayor5(double matriz[][]){
         int cont=0;
         double sismo5= 5.0;
         for (int i = 0; i < matriz.length; i++) {
@@ -91,10 +93,27 @@ public class Main {
 
     }
 
-    public static void enviarSMS(){
+    public static void enviarSMS(double matriz[][]){
 
+        int cont=0;
+        double sismo7= 7.0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (matriz[i][j] > sismo7) {
+
+                }}
+            System.out.println("alerta sismo mayor que 7.0");
+        }
     }
     public static void salir(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("confirme salir de aplicacion S/N");
+        String optioin= sc.next();
+        if (optioin=="S"){
+            exit(0);
+        } else {
+            menu();
+        }
 
     }
 }
