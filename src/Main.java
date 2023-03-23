@@ -33,7 +33,7 @@ public class Main {
                     Double maximo = sismoMayorMagnitud(matriz);
                     break;
                 case 3:
-                    sismoMayo5();
+                    int mayores5 = sismoMayo5(matriz);
                     break;
                 case 4:
                     enviarSMS();
@@ -66,8 +66,7 @@ public class Main {
         Double mayor = 0.0;
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[0].length; j++) {
-                boolean b = matriz[i][j] > mayor;
-                if matriz[i][j] > mayor {
+                if (matriz[i][j] > mayor) {
                     mayor = matriz[i][j];
                 }
                 System.out.print(matriz[i][j] + " ");
@@ -76,7 +75,18 @@ public class Main {
         }
     return mayor;
     }
-    public static void sismoMayo5(){
+    public static int sismoMayo5(double matriz[][]){
+        int cont=0;
+        double sismo5= 5.0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                if (matriz[i][j] > sismo5) {
+                    cont ++;
+                }
+                System.out.print( "contador de sismos mayores que 5 "+sismo5);  }
+            System.out.println();
+        }
+        return cont;
 
     }
 
